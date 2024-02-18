@@ -1,1 +1,2 @@
-# multithreaded-programming
+# Multithreaded-programming
+Repository for homework
