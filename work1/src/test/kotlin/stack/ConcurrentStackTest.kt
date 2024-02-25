@@ -21,5 +21,4 @@ abstract class ConcurrentStackTest(private val stack: ConcurrentStack<Int>) {
         .check(this::class)
 }
 
-class ConcurrentStackSimpleTest : ConcurrentStackTest(ConcurrentStackSimple())
-
+class ConcurrentTreiberStackTest : ConcurrentStackTest(ConcurrentTreiberStack())

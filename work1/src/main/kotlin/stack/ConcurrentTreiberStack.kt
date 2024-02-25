@@ -2,7 +2,7 @@ package stack
 
 import java.util.concurrent.atomic.AtomicReference
 
-class ConcurrentStackSimple<T> : ConcurrentStack<T> {
+class ConcurrentTreiberStack<T> : ConcurrentStack<T> {
     private var head = AtomicReference<Node<T>?>()
     override fun push(x: T) {
         while (true) {
