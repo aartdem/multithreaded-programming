@@ -1,5 +1,3 @@
 package stack
 
-class Node(private val value : Int, private val next : Node?) {
-
-}
+class Node<T>(val value: T, val next: Node<T>?)

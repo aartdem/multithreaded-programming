@@ -11,6 +11,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines:0.19.2")
+    testImplementation("org.jetbrains.kotlinx:lincheck:2.26")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
