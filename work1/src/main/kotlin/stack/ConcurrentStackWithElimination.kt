@@ -1,44 +1,70 @@
 package stack
 
 import java.util.concurrent.atomic.AtomicReference
+import java.util.concurrent.atomic.AtomicStampedReference
 
-// Main idea taken from https://people.csail.mit.edu/shanir/publications/Lock_Free.pdf
+class LockFreeExchanger<T> {
+    val slot: AtomicStampedReference<T?> = AtomicStampedReference(null, 0)
 
-class ThreadInfo<T>(
-    val op: Char,
-    val node: Node<T>?,
-    val spin: Int = 1000,
-) {
-    val id: Long = Thread.currentThread().id
+    companion object {
+        const val EMPTY = 0
+        const val WAITING = 1
+        const val BUSY = 1
+    }
+
+    fun exchange(myItem: T) {
+        val stampHolder = intArrayOf(EMPTY)
+        while (true) {
+            val anotherItem = slot.get(stampHolder)
+
+        }
+    }
+}
+
+class EliminationArray<T>() {
+    fun visit(): T? {
+        TODO()
+    }
 }
 
 class ConcurrentStackWithElimination<T>(
-    private val maxTreadsNum: Int,
+
 ) : ConcurrentStack<T> {
     private val head = AtomicReference<Node<T>?>()
+    private val eliminationArray = EliminationArray<T>()
     override fun push(x: T) {
-        val lastHead = head.get()
-        val p = ThreadInfo('+', Node(x, lastHead))
-        if (!head.compareAndSet(lastHead, p.node)) {
-            lesOp(p)
+        val newHead = Node(x)
+        while (true) {
+            if (tryPush(newHead)) return
+            eliminationArray.visit() ?: return
         }
     }
 
     override fun pop(): T? {
-        val lastHead = head.get() ?: return null
-        if (!head.compareAndSet(lastHead, lastHead.next)) {
-            return lastHead.value
+        while (true) {
+            val (tryRes, valRes) = tryPop()
+            if (tryRes) return valRes
+            eliminationArray.visit()?.let {
+                return it
+            }
         }
-        else {
-            val p = ThreadInfo<T>('-', null) // ???
-            return lesOp(p)
-        }
+    }
+
+    private fun tryPush(newHead: Node<T>): Boolean {
+        val oldHead = head.get()
+        newHead.next = oldHead
+        return head.compareAndSet(oldHead, newHead)
+    }
+
+    private fun tryPop(): Pair<Boolean, T?> {
+        val oldHead = head.get() ?: return Pair(true, null)
+        val newHead = oldHead.next
+        return Pair(head.compareAndSet(oldHead, newHead), oldHead.value)
     }
 
     override fun top(): T? = head.get()?.value
 
-    private fun lesOp(p: ThreadInfo<T>) : T? {
-        TODO("Not yet implemented")
-    }
 
 }
+
+

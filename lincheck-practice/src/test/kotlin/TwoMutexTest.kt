@@ -1,6 +1,6 @@
 import kotlinx.coroutines.sync.Mutex
-import org.example.Counter
-import org.example.TwoMutex
+import org.jetbrains.kotlinx.lincheck.LinChecker
+import org.jetbrains.kotlinx.lincheck.LoggingLevel
 import org.jetbrains.kotlinx.lincheck.annotations.Operation
 import org.jetbrains.kotlinx.lincheck.check
 import org.jetbrains.kotlinx.lincheck.strategy.managed.modelchecking.ModelCheckingOptions
@@ -14,7 +14,7 @@ class TwoMutexTest {
     suspend fun captureMutex1() {
         m1.lock()
         m2.lock()
-
+        // some work
         m1.unlock()
         m2.unlock()
     }
@@ -22,10 +22,12 @@ class TwoMutexTest {
     suspend fun captureMutex2() {
         m2.lock()
         m1.lock()
-
+        // some work
         m2.unlock()
         m1.unlock()
     }
+
     @Test
-    fun stressTest() = ModelCheckingOptions().check(this::class)
+    fun test() = ModelCheckingOptions().check(this::class)
+
 }
