@@ -1,25 +1,9 @@
-package stack
+package stack.elimination
 
+import stack.common.ConcurrentStack
+import stack.common.Node
 import java.util.concurrent.atomic.AtomicReference
 import java.util.concurrent.atomic.AtomicStampedReference
-
-class LockFreeExchanger<T> {
-    val slot: AtomicStampedReference<T?> = AtomicStampedReference(null, 0)
-
-    companion object {
-        const val EMPTY = 0
-        const val WAITING = 1
-        const val BUSY = 1
-    }
-
-    fun exchange(myItem: T) {
-        val stampHolder = intArrayOf(EMPTY)
-        while (true) {
-            val anotherItem = slot.get(stampHolder)
-
-        }
-    }
-}
 
 class EliminationArray<T>() {
     fun visit(): T? {

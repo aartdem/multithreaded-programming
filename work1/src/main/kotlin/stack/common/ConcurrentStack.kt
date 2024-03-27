@@ -1,4 +1,4 @@
-package stack
+package stack.common
 
 interface ConcurrentStack<T> {
     fun push(x: T)

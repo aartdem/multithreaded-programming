@@ -1,5 +1,7 @@
-package stack
+package stack.simple
 
+import stack.common.ConcurrentStack
+import stack.common.Node
 import java.util.concurrent.atomic.AtomicReference
 
 class ConcurrentTreiberStack<T> : ConcurrentStack<T> {
@@ -14,6 +16,7 @@ class ConcurrentTreiberStack<T> : ConcurrentStack<T> {
             }
         }
     }
+
     override fun pop(): T? {
         while (true) {
             val lastHead = head.get() ?: return null
@@ -22,5 +25,6 @@ class ConcurrentTreiberStack<T> : ConcurrentStack<T> {
             }
         }
     }
-    override fun top(): T? = null
+
+    override fun top(): T? = head.get()?.value
 }
