@@ -22,5 +22,5 @@ class ConcurrentTreiberStack<T> : ConcurrentStack<T> {
             }
         }
     }
-    override fun top(): T? = head.get()?.value
+    override fun top(): T? = null
 }
