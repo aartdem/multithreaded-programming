@@ -3,6 +3,7 @@ package stack
 import org.jetbrains.kotlinx.lincheck.annotations.Operation
 import org.jetbrains.kotlinx.lincheck.check
 import org.jetbrains.kotlinx.lincheck.strategy.managed.modelchecking.ModelCheckingOptions
+import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
 import kotlin.test.Test
 
 abstract class ConcurrentStackTest(private val stack: ConcurrentStack<Int>) {
@@ -16,8 +17,31 @@ abstract class ConcurrentStackTest(private val stack: ConcurrentStack<Int>) {
     fun top(): Int? = stack.top()
 
     @Test
+    fun stressTest() = StressOptions()
+        .sequentialSpecification(SequentialStack::class.java)
+        .check(this::class)
+
+    @Test
     fun modelCheckingTest() = ModelCheckingOptions()
         .sequentialSpecification(SequentialStack::class.java)
+        .checkObstructionFreedom()
+        .check(this::class)
+
+    @Test
+    fun fourThreadsStressTest() = StressOptions()
+        .sequentialSpecification(SequentialStack::class.java)
+        .threads(4)
+        .iterations(5)
+        .invocationsPerIteration(100)
+        .check(this::class)
+
+    @Test
+    fun fourThreadsModelCheckingTest() = ModelCheckingOptions()
+        .sequentialSpecification(SequentialStack::class.java)
+        .checkObstructionFreedom()
+        .threads(4)
+        .iterations(5)
+        .invocationsPerIteration(100)
         .check(this::class)
 }
 

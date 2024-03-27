@@ -14,8 +14,6 @@ class ConcurrentTreiberStack<T> : ConcurrentStack<T> {
             }
         }
     }
-
-    // returns null if stack is empty
     override fun pop(): T? {
         while (true) {
             val lastHead = head.get() ?: return null
@@ -24,7 +22,5 @@ class ConcurrentTreiberStack<T> : ConcurrentStack<T> {
             }
         }
     }
-
-    // returns null if stack is empty
     override fun top(): T? = head.get()?.value
 }
