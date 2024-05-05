@@ -1,3 +1,3 @@
 package stack.common
 
-class Node<T>(var value: T, var next: Node<T>? = null)
+class Node<T>(val value: T, val next: Node<T>? = null)
