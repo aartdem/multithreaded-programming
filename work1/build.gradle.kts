@@ -15,7 +15,7 @@ dependencies {
     implementation("org.apache.commons:commons-math3:3.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
     testImplementation("org.jetbrains.kotlinx:lincheck:2.26")
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation(kotlin("test"))
 }
 
 tasks.test {
