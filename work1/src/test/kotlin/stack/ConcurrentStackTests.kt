@@ -22,6 +22,8 @@ abstract class ConcurrentStackTests(private val stack: ConcurrentStack<Int>) {
     @Test
     fun stressTest() = StressOptions()
         .sequentialSpecification(SequentialStack::class.java)
+        .iterations(50)
+        .invocationsPerIteration(1000)
         .check(this::class)
 
     @Test
@@ -35,16 +37,18 @@ abstract class ConcurrentStackTests(private val stack: ConcurrentStack<Int>) {
     @Test
     fun modelCheckingTest() = ModelCheckingOptions()
         .sequentialSpecification(SequentialStack::class.java)
+        .iterations(50)
+        .invocationsPerIteration(1000)
         .checkObstructionFreedom()
         .check(this::class)
 
     @Test
     fun fourThreadsModelCheckingTest() = ModelCheckingOptions()
         .sequentialSpecification(SequentialStack::class.java)
-        .checkObstructionFreedom()
         .threads(4)
         .iterations(50)
         .invocationsPerIteration(500)
+        .checkObstructionFreedom()
         .check(this::class)
 }
 
