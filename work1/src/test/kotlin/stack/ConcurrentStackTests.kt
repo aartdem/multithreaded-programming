@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.lincheck.check
 import org.jetbrains.kotlinx.lincheck.strategy.managed.modelchecking.ModelCheckingOptions
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
 import stack.common.ConcurrentStack
+import stack.elimination.ConcurrentStackWithElimination
 import stack.simple.ConcurrentTreiberStack
 import kotlin.test.Test
 
@@ -48,3 +49,5 @@ abstract class ConcurrentStackTests(private val stack: ConcurrentStack<Int>) {
 }
 
 class ConcurrentTreiberStackTests : ConcurrentStackTests(ConcurrentTreiberStack())
+
+class ConcurrentStackWithEliminationTests : ConcurrentStackTests(ConcurrentStackWithElimination())
