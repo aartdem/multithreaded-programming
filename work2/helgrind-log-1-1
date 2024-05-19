@@ -1,0 +1,679 @@
+==5411== Helgrind, a thread error detector
+==5411== Copyright (C) 2007-2017, and GNU GPL'd, by OpenWorks LLP et al.
+==5411== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==5411== Command: ./main
+==5411== Parent PID: 4536
+==5411== 
+==5411== ---Thread-Announcement------------------------------------------
+==5411== 
+==5411== Thread #3 was created
+==5411==    at 0x4BC89F3: clone (clone.S:76)
+==5411==    by 0x4BC98EE: __clone_internal (clone-internal.c:83)
+==5411==    by 0x4B376D8: create_thread (pthread_create.c:295)
+==5411==    by 0x4B381FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==5411==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x10A34D: main (q2.cpp:246)
+==5411== 
+==5411== ---Thread-Announcement------------------------------------------
+==5411== 
+==5411== Thread #2 was created
+==5411==    at 0x4BC89F3: clone (clone.S:76)
+==5411==    by 0x4BC98EE: __clone_internal (clone-internal.c:83)
+==5411==    by 0x4B376D8: create_thread (pthread_create.c:295)
+==5411==    by 0x4B381FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==5411==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x10A328: main (q2.cpp:245)
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #3
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1094BA: sortQuarter2(void*) (q2.cpp:49)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #2
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1092DA: sortQuarter1(void*) (q2.cpp:19)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ---Thread-Announcement------------------------------------------
+==5411== 
+==5411== Thread #4 was created
+==5411==    at 0x4BC89F3: clone (clone.S:76)
+==5411==    by 0x4BC98EE: __clone_internal (clone-internal.c:83)
+==5411==    by 0x4B376D8: create_thread (pthread_create.c:295)
+==5411==    by 0x4B381FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==5411==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x10A372: main (q2.cpp:247)
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #2
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1092DA: sortQuarter1(void*) (q2.cpp:19)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #2
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x10940D: sortQuarter1(void*) (q2.cpp:34)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous read of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #2
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109451: sortQuarter1(void*) (q2.cpp:37)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous read of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ---Thread-Announcement------------------------------------------
+==5411== 
+==5411== Thread #5 was created
+==5411==    at 0x4BC89F3: clone (clone.S:76)
+==5411==    by 0x4BC98EE: __clone_internal (clone-internal.c:83)
+==5411==    by 0x4B376D8: create_thread (pthread_create.c:295)
+==5411==    by 0x4B381FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==5411==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x10A397: main (q2.cpp:248)
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #2
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1092DA: sortQuarter1(void*) (q2.cpp:19)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ---Thread-Announcement------------------------------------------
+==5411== 
+==5411== Thread #1 is the program's root thread
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 1 at 0x4DE9C80 by thread #5
+==5411== Locks held: none
+==5411==    at 0x4859796: mempcpy (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B2E664: _IO_new_file_xsputn (fileops.c:1235)
+==5411==    by 0x4B2E664: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==5411==    by 0x4B22FD6: fwrite (iofwrite.c:39)
+==5411==    by 0x49B3B64: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 1 by thread #2
+==5411== Locks held: none
+==5411==    at 0x4859796: mempcpy (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B2E664: _IO_new_file_xsputn (fileops.c:1235)
+==5411==    by 0x4B2E664: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==5411==    by 0x4B22FD6: fwrite (iofwrite.c:39)
+==5411==    by 0x49B3B64: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1092DA: sortQuarter1(void*) (q2.cpp:19)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==  Address 0x4de9c80 is 0 bytes inside a block of size 1,024 alloc'd
+==5411==    at 0x484A919: malloc (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B21BA3: _IO_file_doallocate (filedoalloc.c:101)
+==5411==    by 0x4B30CDF: _IO_doallocbuf (genops.c:347)
+==5411==    by 0x4B2FF5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==5411==    by 0x4B2E6D4: _IO_new_file_xsputn (fileops.c:1243)
+==5411==    by 0x4B2E6D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==5411==    by 0x4B22FD6: fwrite (iofwrite.c:39)
+==5411==    by 0x49B3B64: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x10A21B: main (q2.cpp:232)
+==5411==  Block was alloc'd by thread #1
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous read of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 1 at 0x4DE9C93 by thread #5
+==5411== Locks held: none
+==5411==    at 0x48597B4: mempcpy (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B2E664: _IO_new_file_xsputn (fileops.c:1235)
+==5411==    by 0x4B2E664: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==5411==    by 0x4B22FD6: fwrite (iofwrite.c:39)
+==5411==    by 0x49A5AF7: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B4119: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109920: sortQuarter4(void*) (q2.cpp:112)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 1 by thread #2
+==5411== Locks held: none
+==5411==    at 0x48597B4: mempcpy (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B2E664: _IO_new_file_xsputn (fileops.c:1235)
+==5411==    by 0x4B2E664: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==5411==    by 0x4B22FD6: fwrite (iofwrite.c:39)
+==5411==    by 0x49A5AF7: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B4119: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109309: sortQuarter1(void*) (q2.cpp:22)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==  Address 0x4de9c93 is 19 bytes inside a block of size 1,024 alloc'd
+==5411==    at 0x484A919: malloc (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B21BA3: _IO_file_doallocate (filedoalloc.c:101)
+==5411==    by 0x4B30CDF: _IO_doallocbuf (genops.c:347)
+==5411==    by 0x4B2FF5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==5411==    by 0x4B2E6D4: _IO_new_file_xsputn (fileops.c:1243)
+==5411==    by 0x4B2E6D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==5411==    by 0x4B22FD6: fwrite (iofwrite.c:39)
+==5411==    by 0x49B3B64: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x10A21B: main (q2.cpp:232)
+==5411==  Block was alloc'd by thread #1
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109935: sortQuarter4(void*) (q2.cpp:112)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #2
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1092DA: sortQuarter1(void*) (q2.cpp:19)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109935: sortQuarter4(void*) (q2.cpp:112)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous read of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109A29: sortQuarter4(void*) (q2.cpp:125)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #2
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1092DA: sortQuarter1(void*) (q2.cpp:19)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109A29: sortQuarter4(void*) (q2.cpp:125)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous read of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109A80: sortQuarter4(void*) (q2.cpp:128)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #2
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1092DA: sortQuarter1(void*) (q2.cpp:19)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109A80: sortQuarter4(void*) (q2.cpp:128)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous read of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109706: sortQuarter3(void*) (q2.cpp:82)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109706: sortQuarter3(void*) (q2.cpp:82)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109820: sortQuarter3(void*) (q2.cpp:94)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109820: sortQuarter3(void*) (q2.cpp:94)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x10986C: sortQuarter3(void*) (q2.cpp:97)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x10986C: sortQuarter3(void*) (q2.cpp:97)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #5
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1098DE: sortQuarter4(void*) (q2.cpp:109)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #3
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1094BA: sortQuarter2(void*) (q2.cpp:49)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #3
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109508: sortQuarter2(void*) (q2.cpp:52)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #3
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109508: sortQuarter2(void*) (q2.cpp:52)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #3
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109605: sortQuarter2(void*) (q2.cpp:64)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #3
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109605: sortQuarter2(void*) (q2.cpp:64)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during read of size 8 at 0x10D058 by thread #3
+==5411== Locks held: none
+==5411==    at 0x49B3A22: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109653: sortQuarter2(void*) (q2.cpp:67)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== ----------------------------------------------------------------
+==5411== 
+==5411== Possible data race during write of size 8 at 0x10D058 by thread #3
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x109653: sortQuarter2(void*) (q2.cpp:67)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411== 
+==5411== This conflicts with a previous write of size 8 by thread #4
+==5411== Locks held: none
+==5411==    at 0x49B3AE0: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x49B3EBA: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==5411==    by 0x1096BA: sortQuarter3(void*) (q2.cpp:79)
+==5411==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==5411==    by 0x4B37AC2: start_thread (pthread_create.c:442)
+==5411==    by 0x4BC8A03: clone (clone.S:100)
+==5411==  Address 0x10d058 is 24 bytes inside data symbol "_ZSt4cout@GLIBCXX_3.4"
+==5411== 
+==5411== 
+==5411== Use --history-level=approx or =none to gain increased speed, at
+==5411== the cost of reduced accuracy of conflicting-access information
+==5411== For lists of detected and suppressed errors, rerun with: -s
+==5411== ERROR SUMMARY: 85 errors from 28 contexts (suppressed: 278 from 64)

@@ -1,0 +1,18 @@
+==================
+WARNING: ThreadSanitizer: heap-use-after-free (pid=11329)
+  Read of size 4 at 0x7b0800001018 by thread T5:
+    #0 mergeArray(void*) /home/aartdem/multithreaded-programming/work2/Multithreaded-Merge-Sort/q2.cpp:184:34 (main+0xd1a2b) (BuildId: 75a7ec37bf93bd091d9691e00d2776494499b58a)
+
+  Previous write of size 8 at 0x7b0800001018 by thread T5:
+    #0 free <null> (main+0x4e2e4) (BuildId: 75a7ec37bf93bd091d9691e00d2776494499b58a)
+
+  Location is heap block of size 20 at 0x7b0800001000 allocated by thread T5:
+    #0 operator new[](unsigned long) <null> (main+0xcf546) (BuildId: 75a7ec37bf93bd091d9691e00d2776494499b58a)
+    #1 mergeArray(void*) /home/aartdem/multithreaded-programming/work2/Multithreaded-Merge-Sort/q2.cpp:172:24 (main+0xd17c1) (BuildId: 75a7ec37bf93bd091d9691e00d2776494499b58a)
+
+  Thread T5 (tid=11335, running) created by main thread at:
+    #0 pthread_create <null> (main+0x4f4ad) (BuildId: 75a7ec37bf93bd091d9691e00d2776494499b58a)
+    #1 main /home/aartdem/multithreaded-programming/work2/Multithreaded-Merge-Sort/q2.cpp:255:5 (main+0xd241b) (BuildId: 75a7ec37bf93bd091d9691e00d2776494499b58a)
+
+SUMMARY: ThreadSanitizer: heap-use-after-free /home/aartdem/multithreaded-programming/work2/Multithreaded-Merge-Sort/q2.cpp:184:34 in mergeArray(void*)
+==================
