@@ -1,3 +1,6 @@
 [submodule "work2/Multithreaded-Merge-Sort"]
 	path = work2/Multithreaded-Merge-Sort
 	url = https://github.com/HxnDev/Multithreaded-Merge-Sort
+[submodule "work2/ThreadPool"]
+	path = work2/ThreadPool
+	url = https://github.com/progschj/ThreadPool
