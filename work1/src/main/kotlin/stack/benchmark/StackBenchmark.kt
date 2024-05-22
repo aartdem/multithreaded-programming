@@ -11,7 +11,7 @@ import kotlin.time.measureTime
 
 class StackBenchmark<T>(private val measureScenario: MeasureScenario<T>) {
     /**
-     * Execute loaded scenario [n] times and returns work time in milliseconds. Returns null if scenario was not loaded
+     * Execute loaded scenario [n] times and returns work time represented as confidence interval
      */
     fun startAndMeasure(n: Int): Interval {
         val results = List(n) {
@@ -42,7 +42,9 @@ class StackBenchmark<T>(private val measureScenario: MeasureScenario<T>) {
         return calculateConfidenceInterval(results)
     }
 
-    /** Implemented using [source](https://gist.github.com/gcardone/5536578) */
+    /**
+     * Implemented using [source](https://gist.github.com/gcardone/5536578)
+     * */
     private fun calculateConfidenceInterval(results: List<Double>): Interval {
         val stats = SummaryStatistics().apply {
             results.forEach { this.addValue(it) }
