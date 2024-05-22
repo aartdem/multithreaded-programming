@@ -5,51 +5,40 @@ import org.apache.commons.math3.geometry.euclidean.oned.Interval
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics
 import kotlin.concurrent.thread
 import kotlin.math.sqrt
-import kotlin.time.Duration.Companion.milliseconds
+import kotlin.random.Random
 import kotlin.time.DurationUnit
+import kotlin.time.measureTime
 
-
-class StackBenchmark<T> {
-    private val threads: MutableList<Thread> = mutableListOf()
-
-    private fun clearScenario() {
-        threads.clear()
-    }
-
-    /**
-     * Load the scenario. If scenario was already loaded, overrides it
-     */
-    fun loadScenario(measureScenario: MeasureScenario<T>) {
-        clearScenario()
-
-        val operations = buildList(measureScenario.operationsPerThread) {
-            add(measureScenario.firstOperation)
-            repeat(measureScenario.operationsPerThread - 1) {
-                add(measureScenario.operationGenerator(this.last()))
-            }
-        }.map { it.toStackOperation() }
-
-        repeat(measureScenario.threadsNum) {
-            threads.add(thread(start = false) {
-                operations.forEach { it.invoke(measureScenario.initialStack) }
-            })
-        }
-    }
-
+class StackBenchmark<T>(private val measureScenario: MeasureScenario<T>) {
     /**
      * Execute loaded scenario [n] times and returns work time in milliseconds. Returns null if scenario was not loaded
      */
-    fun startAndMeasure(n: Int): Interval? {
-        if (threads.isEmpty()) return null
+    fun startAndMeasure(n: Int): Interval {
+        val results = List(n) {
+            measureTime {
+                val stack = measureScenario.initialStack
+                val threads = mutableListOf<Thread>()
+                repeat(measureScenario.threadsNum) { threadId ->
+                    threads.add(thread {
+                        repeat(measureScenario.operationsPerThread) {
+                            when (measureScenario.mode) {
+                                Mode.Random -> {
+                                    val rnd = Random.nextInt()
+                                    if (rnd % 2 == 0) stack.push(measureScenario.pushValueProvider())
+                                    else stack.pop()
+                                }
 
-        val results = buildList(n) {
-            val initialTime = System.currentTimeMillis()
-            threads.forEach { it.start() }
-            threads.forEach { it.join() }
-            val workTimeMills = (System.currentTimeMillis() - initialTime)
-            add(workTimeMills.milliseconds.toDouble(DurationUnit.SECONDS))
+                                Mode.PushPop -> {
+                                    if (threadId % 2 == 0) stack.push(measureScenario.pushValueProvider())
+                                    else stack.pop()
+                                }
+                            }
+                        }
+                    })
+                }
+                threads.forEach { it.join() }
+            }.toDouble(DurationUnit.SECONDS)
         }
-
         return calculateConfidenceInterval(results)
     }
 
@@ -62,11 +51,5 @@ class StackBenchmark<T> {
         val crVal = tDist.inverseCumulativeProbability(0.975)
         val ci = crVal * stats.standardDeviation / sqrt(stats.n.toDouble())
         return Interval(stats.mean - ci, stats.mean + ci)
-    }
-
-    fun printLoadedScenario() {
-        threads.forEach {
-            println(it.toString())
-        }
     }
 }
