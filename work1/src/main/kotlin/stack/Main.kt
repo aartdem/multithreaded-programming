@@ -7,30 +7,35 @@ import stack.benchmark.MeasureScenario
 import stack.benchmark.Mode
 import stack.benchmark.StackBenchmark
 import stack.simple.ConcurrentTreiberStack
+import java.math.RoundingMode
 import kotlin.random.Random
 
 const val eps = 1e-3
-const val repeatCount = 20
+const val repeatCount = 10
+
+val Double.round3: String
+    get() = this.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble().toString()
 
 val Interval.formatted: String
     get() {
         val half = (this.sup - this.inf) / 2
         val mid = this.barycenter
         return if (half < eps) {
-            mid.toString()
+            mid.round3
         } else {
-            "$mid \\pm $half"
+            "${mid.round3} \\pm ${half.round3}"
         }
     }
 
 fun main() {
     // prepare cases
-    val threadNums = listOf(1, 2, 4, 6)
-    val operationsCount = buildList {
-        for (i in 1e7.toInt()..1e8.toInt() step 1e7.toInt()) {
-            add(i)
-        }
-    }
+    val threadNums = listOf(1, 4)
+    val operationsCount = listOf(1e7.toInt())
+//    val operationsCount = buildList {
+//        for (i in 1e7.toInt()..5e7.toInt() step 1e7.toInt()) {
+//            add(i)
+//        }
+//    }
     // calculating
     val results = mutableListOf<List<Interval>>()
     for (threadNum in threadNums) {
@@ -39,7 +44,7 @@ fun main() {
             val stackBenchmark = StackBenchmark(
                 MeasureScenario(
                     threadNum,
-                    opCount / threadNum,
+                    opCount,
                     ConcurrentTreiberStack(),
                     Mode.Random
                 ) { Random.nextInt() }

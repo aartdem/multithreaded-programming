@@ -20,19 +20,23 @@ class StackBenchmark<T>(private val measureScenario: MeasureScenario<T>) {
                 val threads = mutableListOf<Thread>()
                 repeat(measureScenario.threadsNum) { threadId ->
                     threads.add(thread {
-                        repeat(measureScenario.operationsPerThread) {
-                            when (measureScenario.mode) {
-                                Mode.Random -> {
-                                    val rnd = Random.nextInt()
-                                    if (rnd % 2 == 0) stack.push(measureScenario.pushValueProvider())
-                                    else stack.pop()
-                                }
+                        measureTime {
+                            repeat(measureScenario.operationsPerThread) {
+                                when (measureScenario.mode) {
+                                    Mode.Random -> {
+                                        val rnd = Random.nextInt()
+                                        if (rnd % 2 == 0) stack.push(measureScenario.pushValueProvider())
+                                        else stack.pop()
+                                    }
 
-                                Mode.PushPop -> {
-                                    if (threadId % 2 == 0) stack.push(measureScenario.pushValueProvider())
-                                    else stack.pop()
+                                    Mode.PushPop -> {
+                                        if (threadId % 2 == 0) stack.push(measureScenario.pushValueProvider())
+                                        else stack.pop()
+                                    }
                                 }
                             }
+                        }.let {
+                            println("${measureScenario.threadsNum} : $it")
                         }
                     })
                 }
