@@ -11,7 +11,7 @@ import java.math.RoundingMode
 import kotlin.random.Random
 
 const val eps = 1e-3
-const val repeatCount = 10
+const val repeatCount = 15
 
 val Double.round3: String
     get() = this.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble().toString()
@@ -29,13 +29,12 @@ val Interval.formatted: String
 
 fun main() {
     // prepare cases
-    val threadNums = listOf(1, 4)
-    val operationsCount = listOf(1e7.toInt())
-//    val operationsCount = buildList {
-//        for (i in 1e7.toInt()..5e7.toInt() step 1e7.toInt()) {
-//            add(i)
-//        }
-//    }
+    val threadNums = listOf(1, 2, 4, 6)
+    val operationsCount = buildList {
+        for (i in 1e6.toInt()..5e6.toInt() step 1e6.toInt()) {
+            add(i)
+        }
+    }
     // calculating
     val results = mutableListOf<List<Interval>>()
     for (threadNum in threadNums) {

@@ -15,28 +15,24 @@ class StackBenchmark<T>(private val measureScenario: MeasureScenario<T>) {
      */
     fun startAndMeasure(n: Int): Interval {
         val results = List(n) {
+            val stack = measureScenario.initialStack
+            val threads = mutableListOf<Thread>()
             measureTime {
-                val stack = measureScenario.initialStack
-                val threads = mutableListOf<Thread>()
                 repeat(measureScenario.threadsNum) { threadId ->
                     threads.add(thread {
-                        measureTime {
-                            repeat(measureScenario.operationsPerThread) {
-                                when (measureScenario.mode) {
-                                    Mode.Random -> {
-                                        val rnd = Random.nextInt()
-                                        if (rnd % 2 == 0) stack.push(measureScenario.pushValueProvider())
-                                        else stack.pop()
-                                    }
+                        repeat(measureScenario.operationsPerThread) {
+                            when (measureScenario.mode) {
+                                Mode.Random -> {
+                                    val rnd = Random.nextInt()
+                                    if (rnd % 2 == 0) stack.push(measureScenario.pushValueProvider())
+                                    else stack.pop()
+                                }
 
-                                    Mode.PushPop -> {
-                                        if (threadId % 2 == 0) stack.push(measureScenario.pushValueProvider())
-                                        else stack.pop()
-                                    }
+                                Mode.PushPop -> {
+                                    if (threadId % 2 == 0) stack.push(measureScenario.pushValueProvider())
+                                    else stack.pop()
                                 }
                             }
-                        }.let {
-                            println("${measureScenario.threadsNum} : $it")
                         }
                     })
                 }
