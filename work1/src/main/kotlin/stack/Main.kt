@@ -23,7 +23,7 @@ val Interval.formatted: String
         return if (half < eps) {
             mid.round3
         } else {
-            "${mid.round3} \\pm ${half.round3}"
+            "\$\$ ${mid.round3} \\pm ${half.round3} \$\$"
         }
     }
 
