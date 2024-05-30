@@ -13,5 +13,7 @@ jobs:
           cache: gradle
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-      - name: Run build with Gradle Wrapper
+      - name: Run build with Gradle Wrapper work1
         run: cd work1 && ./gradlew build
+      - name: Run build with Gradle Wrapper work4
+        run: cd work4 && ./gradlew build
