@@ -97,7 +97,7 @@ class FineGrainedBinaryTree<T : Comparable<T>> : BinarySearchTree<T>() {
                 val rightSuccessor = findRightSuccessor(nodeToRemove.left!!)
                 rightSuccessor.right = nodeToRemove.right
                 nodeToRemove.right?.unlock()
-                if (rightSuccessor != nodeToRemove.left) rightSuccessor.unlock()
+                if (rightSuccessor !== nodeToRemove.left) rightSuccessor.unlock()
                 nodeToRemove.left
             } else if (nodeToRemove.left == null) {
                 nodeToRemove.right

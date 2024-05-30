@@ -40,10 +40,7 @@ abstract class BinarySearchTreeTests {
     @ParameterizedTest
     @MethodSource("threadNumsProvider")
     fun deletingValuesTest(threadsNum: Int) {
-        val valuesToRemoveLists = List(threadsNum) { List(5000 ) { rnd.nextInt(5000) } }
-        valuesToRemoveLists.forEach {
-            println(it)
-        }
+        val valuesToRemoveLists = List(threadsNum) { List(5000) { rnd.nextInt(5000) } }
         val jobs = mutableListOf<Job>()
         runBlocking {
             valuesToRemoveLists.forEachIndexed { id, list ->
@@ -63,7 +60,6 @@ abstract class BinarySearchTreeTests {
                 }
             }
         }
-        println("ABOBUS")
         runBlocking {
             valuesToRemoveLists.forEachIndexed { id, list ->
                 launch(newSingleThreadContext("Thread$id")) {
@@ -76,6 +72,6 @@ abstract class BinarySearchTreeTests {
     companion object {
         @JvmStatic
         fun threadNumsProvider(): List<Arguments> =
-            listOf(Arguments.of(1), Arguments.of(2), Arguments.of(4))
+            listOf(Arguments.of(1), Arguments.of(2), Arguments.of(4), Arguments.of(6))
     }
 }
