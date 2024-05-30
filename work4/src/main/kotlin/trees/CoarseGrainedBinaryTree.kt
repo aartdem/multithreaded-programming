@@ -2,11 +2,8 @@ package trees
 
 import kotlinx.coroutines.sync.Mutex
 
-class CoarseGrainedBinaryTree<T : Comparable<T>> {
-    private var root: Node<T>? = null
-    private val rootMutex = Mutex()
-
-    suspend fun contains(x: T): Boolean {
+class CoarseGrainedBinaryTree<T : Comparable<T>> : BinarySearchTree<T>() {
+    override suspend fun contains(x: T): Boolean {
         fun containsRecursively(currentNode: Node<T>?): Boolean {
             currentNode ?: return false
 
@@ -18,13 +15,13 @@ class CoarseGrainedBinaryTree<T : Comparable<T>> {
                 containsRecursively(currentNode.right)
             }
         }
-        rootMutex.lock()
+        treeRootMutex.lock()
         val result = containsRecursively(root)
-        rootMutex.unlock()
+        treeRootMutex.unlock()
         return result
     }
 
-    suspend fun add(x: T) {
+    override suspend fun add(x: T) {
         fun addRecursively(currentNode: Node<T>?): Node<T> {
             currentNode ?: return Node(x, null, null)
 
@@ -35,12 +32,12 @@ class CoarseGrainedBinaryTree<T : Comparable<T>> {
             }
             return currentNode
         }
-        rootMutex.lock()
+        treeRootMutex.lock()
         root = addRecursively(root)
-        rootMutex.unlock()
+        treeRootMutex.unlock()
     }
 
-    suspend fun remove(x: T) {
+    override suspend fun remove(x: T) {
         fun removeNode(node: Node<T>): Node<T>? {
             if (node.left != null && node.right != null) {
                 var curChild = node.left
@@ -68,20 +65,9 @@ class CoarseGrainedBinaryTree<T : Comparable<T>> {
             }
             return currentNode
         }
-        rootMutex.lock()
-        root = removeRecursively(root)
-        rootMutex.unlock()
-    }
 
-    fun getValues(): List<T> {
-        val res = mutableListOf<T>()
-        fun getValuesRecursively(currentNode: Node<T>?) {
-            currentNode ?: return
-            getValuesRecursively(currentNode.left)
-            res.add(currentNode.key)
-            getValuesRecursively(currentNode.right)
-        }
-        getValuesRecursively(root)
-        return res
+        treeRootMutex.lock()
+        root = removeRecursively(root)
+        treeRootMutex.unlock()
     }
 }

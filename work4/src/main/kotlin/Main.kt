@@ -1,13 +1,11 @@
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import trees.CoarseGrainedBinaryTree
+import trees.FineGrainedBinaryTree
 
 
 fun main(): Unit = runBlocking {
-    val tree = CoarseGrainedBinaryTree<Int>()
-    tree.add(2)
-    tree.add(1)
-    tree.add(3)
-    tree.contains(1)
-    tree.remove(1)
-    tree.contains(1)
+    println("Hello world!")
 }
